@@ -5,15 +5,26 @@
  */
 package Model;
 
+import Database.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author ginas
  */
-public abstract class Pengguna {
+public class Pengguna {
+
     private String username;
     private String email;
     private String password;
 
+    public Pengguna(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -38,8 +49,30 @@ public abstract class Pengguna {
         this.password = password;
     }
 
-    public abstract void signIn();
-    public abstract void signUp();
-    public abstract void logOut();
-    public abstract void viewProfile();
+    public ResultSet signIn(String email, String password) throws SQLException{
+        Database db = new Database();
+        String sql = "select * from `USER`"
+                + "where "
+                + "email = '" + email + "' "
+                + " AND"
+                + " password = '" + password
+                + "'";
+        return db.getData(sql);
+    }
+    
+    public void signUp() throws SQLException{
+        Database db = new Database();
+        String sql = "insert into USER (user_name, email, password)"
+                + "values ('" + this.getUsername() + "','" + this.getEmail()
+                + "','" + this.getPassword() + "')";
+        db.query(sql);
+    }
+    
+    public void logOut(){
+        
+    }
+    
+    public void viewProfile(){
+        
+    }
 }

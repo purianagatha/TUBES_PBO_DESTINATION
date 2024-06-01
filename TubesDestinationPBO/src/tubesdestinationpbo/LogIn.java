@@ -1,9 +1,23 @@
 package tubesdestinationpbo;
 
+import Database.Database;
+import Model.Admin;
+import Model.Pengguna;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class LogIn extends javax.swing.JFrame {
+
+    ArrayList<Pengguna> ArrUser;
+    Pengguna user;
 
     public LogIn() {
         initComponents();
+        ArrUser = new ArrayList();
     }
 
     @SuppressWarnings("unchecked")
@@ -17,14 +31,12 @@ public class LogIn extends javax.swing.JFrame {
         Left = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Email = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        Password = new javax.swing.JPasswordField();
+        LogginButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("D:\\Ngoding\\Java\\TUBES_DESTINATION_PBO\\TUBES_PBO_DESTINATION\\TubesDestinationPBO\\src\\Icon & Pict\\Globalization-pana.png")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LOGIN");
@@ -57,7 +69,7 @@ public class LogIn extends javax.swing.JFrame {
         );
 
         PanelBackground.add(Right);
-        Right.setBounds(0, 0, 316, 380);
+        Right.setBounds(0, 0, 313, 380);
 
         Left.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -68,15 +80,31 @@ public class LogIn extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Email");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Password");
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("LogIn");
+        Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordActionPerformed(evt);
+            }
+        });
+
+        LogginButton.setBackground(new java.awt.Color(0, 102, 102));
+        LogginButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LogginButton.setForeground(new java.awt.Color(255, 255, 255));
+        LogginButton.setText("LogIn");
+        LogginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogginButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("I don't have an account");
 
@@ -101,10 +129,10 @@ public class LogIn extends javax.swing.JFrame {
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1)
+                        .addComponent(Email)
                         .addComponent(jLabel3)
-                        .addComponent(jPasswordField1)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                        .addComponent(Password)
+                        .addComponent(LogginButton, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                     .addGroup(LeftLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,13 +147,13 @@ public class LogIn extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton1)
+                .addComponent(LogginButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -147,8 +175,6 @@ public class LogIn extends javax.swing.JFrame {
             .addComponent(PanelBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        getAccessibleContext().setAccessibleName("LOGIN");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,6 +186,50 @@ public class LogIn extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void EmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailActionPerformed
+
+    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordActionPerformed
+
+    private void acc_account(String email, String password) {
+        try {
+            Database db = new Database();
+            String sql = "select * from `USER`"
+                    + "where "
+                    + "email = '" + email + "' "
+                    + " AND"
+                    + " password = '" + password
+                    + "'";
+            ResultSet travel = db.getData(sql);
+            while (travel.next()) {
+                Pengguna user = new Pengguna(travel.getString("user_name"), travel.getString("email"), travel.getString("password"));
+            }
+            ArrUser.add(user);
+        } catch (SQLException E) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, E);
+        }
+    }
+
+    private void LogginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogginButtonActionPerformed
+        // TODO add your handling code here:
+        String email = Email.getText();
+        String password = Password.getText();
+        acc_account(email, password);
+        if (ArrUser.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Gagal");
+        } else {
+            JOptionPane.showMessageDialog(null, "Berhasil");
+            ArrUser.clear();
+            //dispose();
+            //Admin A = new Admin();
+            //A.setVisible(true);
+        }
+        Email.setText("");
+        Password.setText("");
+    }//GEN-LAST:event_LogginButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -194,10 +264,12 @@ public class LogIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Email;
     private javax.swing.JPanel Left;
+    private javax.swing.JButton LogginButton;
     private javax.swing.JPanel PanelBackground;
+    private javax.swing.JPasswordField Password;
     private javax.swing.JPanel Right;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -205,7 +277,5 @@ public class LogIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
