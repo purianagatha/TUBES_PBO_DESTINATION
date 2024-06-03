@@ -5,10 +5,7 @@
  */
 package Model;
 
-/**
- *
- * @author ginas
- */
+
 public class TempatWisata {
     private int idTempat;
     private String nama;
@@ -64,5 +61,5 @@ public class TempatWisata {
     public void setHarga(int harga) {
         this.harga = harga;
     }
-    
+
 }

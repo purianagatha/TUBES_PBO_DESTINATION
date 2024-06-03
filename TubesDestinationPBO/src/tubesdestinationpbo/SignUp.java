@@ -226,7 +226,7 @@ public class SignUp extends javax.swing.JFrame {
             UserName.setText("");
             Email.setText("");
             Password.setText("");
-        }catch (SQLException E){
+        }catch (SQLException E) {
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, E);
         }
     }//GEN-LAST:event_signUpBottonActionPerformed

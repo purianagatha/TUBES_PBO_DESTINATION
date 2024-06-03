@@ -14,8 +14,11 @@ public class Admin extends Pengguna {
     private String Email;
     private String Password;
 
-    public Admin(String username, String email, String password) {
-        super(username, email, password);
+    public Admin(String UserName, String Email, String Password, String string, String string0, String string1) {
+        super(string, string0, string1);
+        this.UserName = UserName;
+        this.Email = Email;
+        this.Password = Password;
     }
 
     public String getUserName() {
@@ -62,11 +65,11 @@ public class Admin extends Pengguna {
         db.query(SQL);
     }
 
-    public void editTempatWisata(String idtempat, String nama, String lokasi, String deskripsi, String rating, int harga) throws SQLException {
+    public void editTempatWisata(String target, String idtempat, String nama, String lokasi, String deskripsi, String rating, int harga) throws SQLException {
         Database db = new Database();
         String sql = "update tempatwisata set id_tempat = '" + idtempat + "',nama = '" + nama
                 + "', lokasi = '" + lokasi + "'deskripsi = '" + deskripsi + "',rating = '" + rating 
-                + "',harga = '" + harga + "';";
+                + "',harga = '" + harga + "',where nama = '" + target + "';";
         db.query(sql);
     }
 }

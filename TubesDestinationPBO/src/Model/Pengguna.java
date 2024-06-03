@@ -5,74 +5,18 @@
  */
 package Model;
 
-import Database.Database;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
- * @author ginas
+ * @author Alghifari
  */
 public class Pengguna {
 
-    private String username;
-    private String email;
-    private String password;
+    public Pengguna(String string, String string0, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    public Pengguna(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public void signUp() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public ResultSet signIn(String email, String password) throws SQLException{
-        Database db = new Database();
-        String sql = "select * from `USER`"
-                + "where "
-                + "email = '" + email + "' "
-                + " AND"
-                + " password = '" + password
-                + "'";
-        return db.getData(sql);
-    }
-    
-    public void signUp() throws SQLException{
-        Database db = new Database();
-        String sql = "insert into USER (user_name, email, password)"
-                + "values ('" + this.getUsername() + "','" + this.getEmail()
-                + "','" + this.getPassword() + "')";
-        db.query(sql);
-    }
-    
-    public void logOut(){
-        
-    }
-    
-    public void viewProfile(){
-        
-    }
 }
