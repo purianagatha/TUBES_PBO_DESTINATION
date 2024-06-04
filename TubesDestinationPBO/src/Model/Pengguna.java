@@ -5,6 +5,11 @@
  */
 package Model;
 
+import Database.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Alghifari
@@ -15,8 +20,8 @@ public class Pengguna {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void signUp() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void signUp() throws SQLException {
+       Database db = new Database();
     }
     
 }
