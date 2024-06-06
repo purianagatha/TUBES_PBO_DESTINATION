@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 
 public class DashboardNew extends javax.swing.JFrame {
 
-    /** Creates new form DashboardNew */
     public DashboardNew() {
         initComponents();
         list1.setVisible(false);
@@ -1004,7 +1003,7 @@ public class DashboardNew extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Nama Lengkap");
+        jLabel8.setText("Username");
 
         jLabel22.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(204, 204, 204));
@@ -1150,12 +1149,10 @@ public class DashboardNew extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelDashboardMouseExited
 
     private void PanelDashboardMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDashboardMousePressed
-        // TODO add your handling code here:
         PanelDashboard.setBackground(new Color(53,143,128));
     }//GEN-LAST:event_PanelDashboardMousePressed
 
     private void PanelDashboardMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDashboardMouseReleased
-        // TODO add your handling code here:
         PanelDashboard.setBackground(new Color(86, 171, 145));
     }//GEN-LAST:event_PanelDashboardMouseReleased
 
