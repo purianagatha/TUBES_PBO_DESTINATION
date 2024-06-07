@@ -365,6 +365,7 @@ public class DashboardNew extends javax.swing.JFrame {
         });
 
         jTabbedPaneDashboard.setBackground(new java.awt.Color(3, 102, 102));
+        jTabbedPaneDashboard.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPaneDashboard.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));

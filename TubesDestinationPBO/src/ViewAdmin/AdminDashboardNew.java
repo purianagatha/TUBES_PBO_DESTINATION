@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author puris
  */
-public class AdminDashboard extends javax.swing.JFrame {
+public class AdminDashboardNew extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminDashboard
+     * Creates new form AdminDashboardNew
      */
-    public AdminDashboard() {
+    public AdminDashboardNew() {
         initComponents();
     }
 
@@ -32,18 +32,18 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         PanelDashboard = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        PanelHistoryBooking = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         PanelProfile = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         PanelLogOut = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanelDashboard = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -52,16 +52,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        jPanelHistoryBooking = new javax.swing.JPanel();
         list1 = new java.awt.List();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanelProfile = new javax.swing.JPanel();
@@ -86,10 +86,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TravelTrax");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ADMIN");
-
         PanelDashboard.setBackground(new java.awt.Color(53, 143, 128));
         PanelDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PanelDashboard.setMaximumSize(null);
@@ -113,7 +109,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Dashboard");
+        jLabel2.setText("Input Destinasi Wisata");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout PanelDashboardLayout = new javax.swing.GroupLayout(PanelDashboard);
@@ -121,15 +117,49 @@ public class AdminDashboard extends javax.swing.JFrame {
         PanelDashboardLayout.setHorizontalGroup(
             PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDashboardLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(76, 76, 76))
+                .addGap(37, 37, 37))
         );
         PanelDashboardLayout.setVerticalGroup(
             PanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDashboardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        PanelHistoryBooking.setBackground(new java.awt.Color(53, 143, 128));
+        PanelHistoryBooking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PanelHistoryBookingMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PanelHistoryBookingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PanelHistoryBookingMouseExited(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Destinasi Wisata");
+
+        javax.swing.GroupLayout PanelHistoryBookingLayout = new javax.swing.GroupLayout(PanelHistoryBooking);
+        PanelHistoryBooking.setLayout(PanelHistoryBookingLayout);
+        PanelHistoryBookingLayout.setHorizontalGroup(
+            PanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelHistoryBookingLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelHistoryBookingLayout.setVerticalGroup(
+            PanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelHistoryBookingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,10 +184,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         PanelProfile.setLayout(PanelProfileLayout);
         PanelProfileLayout.setHorizontalGroup(
             PanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelProfileLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelProfileLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
                 .addComponent(jLabel5)
-                .addGap(99, 99, 99))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelProfileLayout.setVerticalGroup(
             PanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,10 +218,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         PanelLogOut.setLayout(PanelLogOutLayout);
         PanelLogOutLayout.setHorizontalGroup(
             PanelLogOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLogOutLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLogOutLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(101, 101, 101))
         );
         PanelLogOutLayout.setVerticalGroup(
             PanelLogOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,42 +231,51 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ADMIN");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(PanelLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(PanelProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PanelDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel1)
-                        .addGap(0, 40, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(PanelDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PanelHistoryBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(103, 103, 103))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(47, 47, 47)
                 .addComponent(PanelDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
+                .addComponent(PanelHistoryBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(PanelProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(PanelLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGap(18, 18, 18))
         );
 
         jPanel3.setBackground(new java.awt.Color(3, 102, 102));
@@ -245,28 +284,30 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jPanelDashboard.setBackground(new java.awt.Color(3, 102, 102));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel4.setText("Nama Destinasi WIsata");
+        jLabel26.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel26.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Nama Destinasi WIsata");
 
         jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Deskripsi Destinasi Wisata");
 
         jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Lokasi Destinasi Wisata");
 
         jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Harga");
 
         jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -276,15 +317,15 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Simpan");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelDashboardLayout = new javax.swing.GroupLayout(jPanelDashboard);
+        jPanelDashboard.setLayout(jPanelDashboardLayout);
+        jPanelDashboardLayout.setHorizontalGroup(
+            jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDashboardLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel4)
+                .addGroup(jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel26)
                         .addComponent(jLabel7)
                         .addComponent(jTextField2)
                         .addComponent(jLabel9)
@@ -295,11 +336,11 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel4)
+        jPanelDashboardLayout.setVerticalGroup(
+            jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDashboardLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -315,25 +356,37 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Input Destinasi Wisata", jPanel4);
+        jPanel3.add(jPanelDashboard, "card2");
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHistoryBooking.setBackground(new java.awt.Color(3, 102, 102));
 
         jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Nama Destinasi Wisata      : ");
 
         jLabel13.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Deskripsi Destinasi Wisata : ");
 
         jLabel14.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Lokasi                                   : ");
 
         jLabel15.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Harga                                   : ");
+
+        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel19.setText("  ");
+        jLabel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
+
+        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel18.setText("  ");
+        jLabel18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
         jLabel16.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel16.setText("  ");
@@ -342,14 +395,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel17.setText("  ");
         jLabel17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
-
-        jLabel18.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel18.setText("  ");
-        jLabel18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
-
-        jLabel19.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel19.setText("  ");
-        jLabel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
 
         jButton3.setBackground(new java.awt.Color(36, 130, 119));
         jButton3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -361,23 +406,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Delete");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelHistoryBookingLayout = new javax.swing.GroupLayout(jPanelHistoryBooking);
+        jPanelHistoryBooking.setLayout(jPanelHistoryBookingLayout);
+        jPanelHistoryBookingLayout.setHorizontalGroup(
+            jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHistoryBookingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(list1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelHistoryBookingLayout.createSequentialGroup()
+                        .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelHistoryBookingLayout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -387,48 +432,35 @@ public class AdminDashboard extends javax.swing.JFrame {
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        jPanelHistoryBookingLayout.setVerticalGroup(
+            jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHistoryBookingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel19))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelHistoryBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Destinasi Wisata", jPanel5);
-
-        javax.swing.GroupLayout jPanelDashboardLayout = new javax.swing.GroupLayout(jPanelDashboard);
-        jPanelDashboard.setLayout(jPanelDashboardLayout);
-        jPanelDashboardLayout.setHorizontalGroup(
-            jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-        jPanelDashboardLayout.setVerticalGroup(
-            jPanelDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
-        );
-
-        jPanel3.add(jPanelDashboard, "card2");
+        jPanel3.add(jPanelHistoryBooking, "card3");
 
         jPanelProfile.setBackground(new java.awt.Color(3, 102, 102));
 
@@ -479,7 +511,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addComponent(jLabel23)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel24)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
@@ -536,7 +568,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel25)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanelLogOut, "card6");
@@ -579,7 +611,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     private void PanelDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDashboardMouseClicked
         jPanelProfile.setVisible(false);
         jPanelLogOut.setVisible(false);
+        jPanelHistoryBooking.setVisible(false);
         jPanelDashboard.setVisible(true);
+        list1.setVisible(true);
     }//GEN-LAST:event_PanelDashboardMouseClicked
 
     private void PanelDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelDashboardMouseEntered
@@ -598,8 +632,25 @@ public class AdminDashboard extends javax.swing.JFrame {
         PanelDashboard.setBackground(new Color(86, 171, 145));
     }//GEN-LAST:event_PanelDashboardMouseReleased
 
+    private void PanelHistoryBookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelHistoryBookingMouseClicked
+        jPanelDashboard.setVisible(false);
+        jPanelProfile.setVisible(false);
+        jPanelLogOut.setVisible(false);
+        jPanelHistoryBooking.setVisible(true);
+
+    }//GEN-LAST:event_PanelHistoryBookingMouseClicked
+
+    private void PanelHistoryBookingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelHistoryBookingMouseEntered
+        PanelHistoryBooking.setBackground(new Color(86, 171, 145));
+    }//GEN-LAST:event_PanelHistoryBookingMouseEntered
+
+    private void PanelHistoryBookingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelHistoryBookingMouseExited
+        PanelHistoryBooking.setBackground(new Color(53,143,128));
+    }//GEN-LAST:event_PanelHistoryBookingMouseExited
+
     private void PanelProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelProfileMouseClicked
         jPanelDashboard.setVisible(false);
+        jPanelHistoryBooking.setVisible(false);
         jPanelLogOut.setVisible(false);
         jPanelProfile.setVisible(true);
         jLabelForPictureProfile.setVisible(true);
@@ -652,26 +703,27 @@ public class AdminDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardNew.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminDashboard().setVisible(true);
+                new AdminDashboardNew().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDashboard;
+    private javax.swing.JPanel PanelHistoryBooking;
     private javax.swing.JPanel PanelLogOut;
     private javax.swing.JPanel PanelProfile;
     private javax.swing.JButton jButton1;
@@ -693,6 +745,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -704,13 +757,11 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelDashboard;
+    private javax.swing.JPanel jPanelHistoryBooking;
     private javax.swing.JPanel jPanelLogOut;
     private javax.swing.JPanel jPanelProfile;
     private javax.swing.JPanel jPanelProfileDalam;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
