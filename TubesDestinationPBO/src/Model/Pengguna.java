@@ -5,41 +5,51 @@
  */
 package Model;
 
+import Database.Database;
+import java.sql.SQLException;
+
 /**
  *
  * @author ginas
  */
 public abstract class Pengguna {
-    private String username;
-    private String email;
-    private String password;
+    private String username_pengguna;
+    private String email_pengguna;
+    private String password_pengguna;
 
-    public String getUsername() {
-        return username;
+    public Pengguna(String username_pengguna, String email_pengguna, String password_pengguna) {
+        this.username_pengguna = username_pengguna;
+        this.email_pengguna = email_pengguna;
+        this.password_pengguna = password_pengguna;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Pengguna(String email_pengguna, String password_pengguna) {
+        this.email_pengguna = email_pengguna;
+        this.password_pengguna = password_pengguna;
+    }
+   
+    public String getUsername_pengguna() {
+        return username_pengguna;
     }
 
-    public String getEmail() {
-        return email;
+    public void setUsername_pengguna(String username_pengguna) {
+        this.username_pengguna = username_pengguna;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getEmail_pengguna() {
+        return email_pengguna;
     }
 
-    public String getPassword() {
-        return password;
+    public void setEmail_pengguna(String email_pengguna) {
+        this.email_pengguna = email_pengguna;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPassword_pengguna() {
+        return password_pengguna;
     }
 
-    public abstract void signIn();
-    public abstract void signUp();
-    public abstract void logOut();
-    public abstract void viewProfile();
+    public void setPassword_pengguna(String password_pengguna) {
+        this.password_pengguna = password_pengguna;
+    }
+
 }
