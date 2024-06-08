@@ -1,30 +1,26 @@
 package ViewTuris;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+//import javax.swing.Icon;
+//import javax.swing.ImageIcon;
 
 public class Model_Menu {
-    String icon;
-    String name;
-    MenuType type;
+//    private String icon;
+    private String name;
+    private MenuType type;
     
-    public Model_Menu(String icon, String name, MenuType type){
-        this.icon = icon;
+    public Model_Menu(String name, MenuType type){
+//        this.icon = icon;
         this.name = name;
         this.type = type;
     }
-    
-    public Icon toIcon() {
-        return new ImageIcon(getClass().getResource("/src/Icon_Image/" + icon + ".png"));
-    }
 
-    public String getIcon() {
-        return icon;
-    }
+//    public String getIcon() {
+//        return icon;
+//    }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+//    public void setIcon(String icon) {
+//        this.icon = icon;
+//    }
 
     public String getName() {
         return name;
@@ -42,7 +38,15 @@ public class Model_Menu {
         this.type = type;
     }
     
+    public Model_Menu(){
+    
+    }
+    
+//    public Icon toIcon(){
+//        return new ImageIcon(getClass().getResource("/ViewTuris/" + icon + ".png"));
+//    }
+    
     public static enum MenuType{
-        TITLE, MENU, EMPTY
+        TITLE, MENU, EMPTY;
     }
 }
