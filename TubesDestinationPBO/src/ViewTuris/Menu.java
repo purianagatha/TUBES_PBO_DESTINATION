@@ -12,6 +12,13 @@ import javax.swing.JFrame;
 
 public class Menu extends javax.swing.JPanel {
 
+    private EventMenuSelected event;
+    
+    public void addEventMenuSelected(EventMenuSelected event) {
+        this.event = event;
+        listMenu1.addEventMenuSelected(event);
+    }
+    
     public Menu() {
         initComponents();
         setOpaque(false);

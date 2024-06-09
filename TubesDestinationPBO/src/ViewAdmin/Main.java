@@ -49,7 +49,7 @@ public class Main extends javax.swing.JFrame {
 
         jMainPanel.setOpaque(false);
         jMainPanel.setLayout(new java.awt.BorderLayout());
-        jMainPanel.add(form_Input1, java.awt.BorderLayout.CENTER);
+        jMainPanel.add(form_Input1, java.awt.BorderLayout.PAGE_END);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
