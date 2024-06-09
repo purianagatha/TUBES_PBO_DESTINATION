@@ -1,12 +1,12 @@
-package ViewTuris;
+package ViewAdmin;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-public class Header extends javax.swing.JPanel {
+public class PanelBorder extends javax.swing.JPanel {
 
-    public Header() {
+    public PanelBorder() {
         initComponents();
         setOpaque(false);
     }
@@ -15,25 +15,15 @@ public class Header extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        searchText1 = new ViewTuris.SearchText();
-
-        setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(searchText1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -43,12 +33,9 @@ public class Header extends javax.swing.JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-//        g2.fillRect(0, 0, 25, getHeight());
-//        g2.fillRect(getWidth() - 25, getHeight() - 25, getWidth(), getHeight());
         super.paintComponent(grphcs);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ViewTuris.SearchText searchText1;
     // End of variables declaration//GEN-END:variables
 }
