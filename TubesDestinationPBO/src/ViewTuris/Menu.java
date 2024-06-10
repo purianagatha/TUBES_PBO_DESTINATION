@@ -28,6 +28,8 @@ public class Menu extends javax.swing.JPanel {
     
     private void init(){
         listMenu1.addItem(new Model_Menu("Dashboard", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("Review & Rating", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("Booking", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("History Booking", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("Profile", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("Log Out", Model_Menu.MenuType.MENU));
