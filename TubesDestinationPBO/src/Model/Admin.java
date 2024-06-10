@@ -41,5 +41,11 @@ public class Admin extends Pengguna{
     public void setPassword(String Password) {
         this.Password = Password;
     }
+    
+    public void viewProfile() {
+        System.out.println("Profil Admin ");
+        System.out.println("Username: " + UserName);
+        System.out.println("Email Admin:" + Email);
+    }
 
 }
