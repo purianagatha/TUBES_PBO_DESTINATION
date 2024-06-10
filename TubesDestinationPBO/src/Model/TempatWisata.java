@@ -89,4 +89,28 @@ public class TempatWisata {
         
     }
     
+     public void addTempatWisata(String nama, String deskripsi, String lokasi, int harga) throws SQLException {
+        TempatWisata wisata = new TempatWisata();
+        Database DataBase = new Database();
+        String sql = "INSERT INTO `tempat_wisata`(`nama_destinasi`, `deskripsi_destinasi`, `lokasi_destinasi`, `harga_destinasi`) "
+                + "VALUES ('" + nama + "','" + deskripsi + "','" + lokasi + "'," + harga + ")";
+        DataBase.query(sql);
+    }
+    
+     public void deleteTempatWisata(String nama) throws SQLException {
+        TempatWisata wisata = new TempatWisata();
+        Database db = new Database();
+        String SQL = "Delete from tempat_wisata where nama_destinasi = ('" + nama + "')";
+        db.query(SQL);
+    }
+
+    public void editTempatWisata(String target, String nama, String lokasi, String deskripsi, int harga) throws SQLException {
+        Database db = new Database();
+        String sql = "update tempat_wisata set nama_destinasi = '" + nama
+                + "', deskripsi_destinasi = '" + deskripsi + "', lokasi_destinasi = '" + lokasi 
+                + "',harga_destinasi = '" + harga + "' where nama_destinasi = '" + target + "';";
+        
+        db.query(sql);
+    }
+    
 }

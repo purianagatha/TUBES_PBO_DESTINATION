@@ -4,17 +4,37 @@
  */
 package ViewAdmin;
 
+import Database.Database;
+import Model.TempatWisata;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.text.View;
+
 /**
  *
  * @author puris
  */
 public class Form_Destination extends javax.swing.JPanel {
 
+    String target;
+    ArrayList<TempatWisata> tempat_wisata;
+    DefaultListModel tabel_tempat;
+    Main main = new Main();
+    DialogEdit edit = new DialogEdit(main, true);
     /**
      * Creates new form Form_Destination
      */
     public Form_Destination() {
         initComponents();
+        tabel_tempat = new DefaultListModel();
+        tempat_wisata = new ArrayList();
+        EditButton.setVisible(true);
+        DeleteButton.setVisible(true);
     }
 
     /**
@@ -28,21 +48,32 @@ public class Form_Destination extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        list1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ShowNama = new javax.swing.JLabel();
+        ShowDeskripsi = new javax.swing.JLabel();
+        ShowLokasi = new javax.swing.JLabel();
+        ShowHarga = new javax.swing.JLabel();
+        EditButton = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
+        RefreshButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(227, 242, 253));
 
-        jScrollPane1.setViewportView(jList1);
+        list1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list1MouseClicked(evt);
+            }
+        });
+        list1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                list1ValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(list1);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Nama Destinasi Wisata            :");
@@ -56,29 +87,49 @@ public class Form_Destination extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Harga                                         :");
 
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel5.setText(" ");
-        jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        ShowNama.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ShowNama.setText(" ");
+        ShowNama.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel6.setText(" ");
-        jLabel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        ShowDeskripsi.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ShowDeskripsi.setText(" ");
+        ShowDeskripsi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setText(" ");
-        jLabel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        ShowLokasi.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ShowLokasi.setText(" ");
+        ShowLokasi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel8.setText(" ");
-        jLabel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        ShowHarga.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        ShowHarga.setText(" ");
+        ShowHarga.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jButton1.setBackground(new java.awt.Color(144, 202, 249));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButton1.setText("Edit");
+        EditButton.setBackground(new java.awt.Color(144, 202, 249));
+        EditButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        EditButton.setText("Edit");
+        EditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(144, 202, 249));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButton2.setText("Delete");
+        DeleteButton.setBackground(new java.awt.Color(144, 202, 249));
+        DeleteButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
+
+        RefreshButton.setBackground(new java.awt.Color(144, 202, 249));
+        RefreshButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        RefreshButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alghifari\\Downloads\\icons8-refresh-24.png")); // NOI18N
+        RefreshButton.setText("Refresh");
+        RefreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,21 +140,25 @@ public class Form_Destination extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(RefreshButton)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ShowNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ShowDeskripsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ShowLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ShowHarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,23 +169,25 @@ public class Form_Destination extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel5))
+                    .addComponent(ShowNama))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ShowDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7))
+                    .addComponent(ShowLokasi))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel8))
+                    .addComponent(ShowHarga))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(EditButton, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                        .addComponent(RefreshButton))
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -146,20 +203,97 @@ public class Form_Destination extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditButtonActionPerformed
+        // TODO add your handling code here:
+        edit.setVisible(true);
+    }//GEN-LAST:event_EditButtonActionPerformed
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            int index = list1.getSelectedIndex();
+            String nama = tempat_wisata.get(index).getNamaDestinasi();
+            String deskripsi = tempat_wisata.get(index).getDeskripsiDestinasi();
+            String lokasi = tempat_wisata.get(index).getLokasiDestinasi();
+            int harga = tempat_wisata.get(index).getHargaDestinasi();
+
+            String SQL = "Delete from tempat_wisata where nama_destinasi = '" + nama + "'";
+            System.out.println(SQL);
+
+            TempatWisata wisata = new TempatWisata(nama, deskripsi, lokasi, harga);
+            wisata.deleteTempatWisata(nama);
+            JOptionPane.showMessageDialog(null, "Destinasi berhasil di Delete");
+
+        } catch (SQLException e) {
+            Logger.getLogger(Form_Input.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_DeleteButtonActionPerformed
+
+    private void RefreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshButtonActionPerformed
+        // TODO add your handling code here:
+        tempat_wisata.clear();
+        tabel_tempat.clear();
+        Show_TempatWisata();
+    }//GEN-LAST:event_RefreshButtonActionPerformed
+
+    private void list1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_list1ValueChanged
+        // TODO add your handling code here:
+        int index = list1.getSelectedIndex();
+        if (index >= 0) {
+            ShowNama.setText(tempat_wisata.get(index).getNamaDestinasi());
+            ShowDeskripsi.setText(tempat_wisata.get(index).getDeskripsiDestinasi());
+            ShowLokasi.setText(tempat_wisata.get(index).getLokasiDestinasi());
+            ShowHarga.setText(Integer.toString(tempat_wisata.get(index).getHargaDestinasi()));
+            target = tempat_wisata.get(index).getNamaDestinasi();
+        } else {
+            ShowNama.setText("");
+            ShowDeskripsi.setText("");
+            ShowLokasi.setText("");
+            ShowHarga.setText("");
+        }
+        DeleteButton.setVisible(true);
+        EditButton.setVisible(true);
+    }//GEN-LAST:event_list1ValueChanged
+
+    private void list1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list1MouseClicked
+        // TODO add your handling code here:
+        int index = list1.getSelectedIndex();
+        ShowNama.setText(tempat_wisata.get(index).getNamaDestinasi());
+        ShowDeskripsi.setText(tempat_wisata.get(index).getDeskripsiDestinasi());
+        ShowLokasi.setText(tempat_wisata.get(index).getLokasiDestinasi());
+        ShowHarga.setText(Integer.toString(tempat_wisata.get(index).getHargaDestinasi()));
+    }//GEN-LAST:event_list1MouseClicked
+
+    private void Show_TempatWisata() {
+        try {
+            Database db = new Database();
+            String sql = "SELECT * FROM tempat_wisata";
+            ResultSet rs = db.getData(sql);
+            while (rs.next()) {
+                TempatWisata tempat = new TempatWisata(rs.getString("nama_destinasi"), rs.getString("deskripsi_destinasi"), rs.getString("lokasi_destinasi"), Integer.parseInt(rs.getString("harga_destinasi")));
+                tempat_wisata.add(tempat);
+                tabel_tempat.addElement(tempat.getNamaDestinasi());
+            }
+            list1.setModel(tabel_tempat);
+        } catch (SQLException E) {
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, E);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton DeleteButton;
+    private javax.swing.JButton EditButton;
+    private javax.swing.JButton RefreshButton;
+    private javax.swing.JLabel ShowDeskripsi;
+    private javax.swing.JLabel ShowHarga;
+    private javax.swing.JLabel ShowLokasi;
+    private javax.swing.JLabel ShowNama;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> list1;
     // End of variables declaration//GEN-END:variables
 }

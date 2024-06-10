@@ -4,6 +4,12 @@
  */
 package ViewAdmin;
 
+import Model.TempatWisata;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author puris
@@ -28,14 +34,15 @@ public class Form_Input extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        TextNama = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        TextLokasi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        TextHarga = new javax.swing.JTextField();
+        SaveButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TextDeskripsi = new javax.swing.JTextArea();
 
         jPanel1.setBackground(new java.awt.Color(227, 242, 253));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
@@ -43,31 +50,38 @@ public class Form_Input extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Nama Destinasi Wisata");
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TextNama.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TextNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextNamaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("Deskripsi Destinasi Wisata");
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("Lokasi Destinasi Wisata");
 
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TextLokasi.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Harga");
 
-        jTextField4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        TextHarga.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(144, 202, 249));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jButton1.setText("Simpan");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SaveButton.setBackground(new java.awt.Color(144, 202, 249));
+        SaveButton.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        SaveButton.setText("Simpan");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SaveButtonActionPerformed(evt);
             }
         });
+
+        TextDeskripsi.setColumns(20);
+        TextDeskripsi.setRows(5);
+        jScrollPane1.setViewportView(TextDeskripsi);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,17 +89,18 @@ public class Form_Input extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField1)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField2)
-                        .addComponent(jLabel3)
-                        .addComponent(jTextField3)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(TextNama)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(TextLokasi)
+                            .addComponent(jLabel4)
+                            .addComponent(TextHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
+                        .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -94,21 +109,21 @@ public class Form_Input extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addComponent(SaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -124,21 +139,41 @@ public class Form_Input extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try{
+            String nama = TextNama.getText();
+            String deskripsi = TextDeskripsi.getText();
+            String lokasi = TextLokasi.getText();
+            int harga = Integer.parseInt(TextHarga.getText());
+            TempatWisata wisata = new TempatWisata(nama,deskripsi,lokasi,harga);
+            wisata.addTempatWisata(nama, deskripsi, lokasi, harga);
+            JOptionPane.showMessageDialog(null, "Destinasi berhasil di Inputkan");
+            TextNama.setText("");
+            TextDeskripsi.setText("");
+            TextLokasi.setText("");
+            TextHarga.setText("");
+        }catch (SQLException e) {
+            Logger.getLogger(Form_Input.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void TextNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextNamaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton SaveButton;
+    private javax.swing.JTextArea TextDeskripsi;
+    private javax.swing.JTextField TextHarga;
+    private javax.swing.JTextField TextLokasi;
+    private javax.swing.JTextField TextNama;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
