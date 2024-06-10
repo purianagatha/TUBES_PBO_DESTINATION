@@ -7,6 +7,8 @@ package controller;
 
 import Model.Turis;
 import ViewTuris.DashboardNew;
+import ViewTuris.MainTuris;
+import tubesdestinationpbo.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -46,8 +48,8 @@ public class SignupController implements ActionListener {
                 turis.Signup();
                 resetText();
                 
-                DashboardNew dashboardUser = new DashboardNew();
-                dashboardUser.setVisible(true);
+                LogIn LogInFrame = new LogIn();
+                LogInFrame.setVisible(true);
                 
                 signupPage.dispose();
                 

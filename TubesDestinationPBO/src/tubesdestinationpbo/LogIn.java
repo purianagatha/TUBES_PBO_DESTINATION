@@ -182,8 +182,8 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSignUpActionPerformed
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        DashboardNew dashboard = new DashboardNew();
-        dashboard.setVisible(true);
+//        DashboardNew dashboard = new DashboardNew();
+//        dashboard.setVisible(true);
     }//GEN-LAST:event_btnLoginMouseClicked
 
 

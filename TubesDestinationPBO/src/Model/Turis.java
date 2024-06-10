@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * @author ginas
  */
 public class Turis extends Pengguna {
-    private int id_turis;
+    private int idTuris;
     private String username;
     private String nama_turis;
     private String email;
@@ -26,8 +26,21 @@ public class Turis extends Pengguna {
         super(username, email, password);
     }
     
-    public Turis(String email, String password) {
-        super(email, password);
+    public Turis(String nama_turis, String no_telp_turis) {
+        this.nama_turis = nama_turis;
+        this.no_telepon_turis = no_telp_turis;
+    }
+    
+    public Turis() {
+        
+    }
+    
+    public int getIdTuris() {
+        return idTuris;
+    }
+
+    public void setIdTuris(int idTuris) {
+        this.idTuris = idTuris;
     }
 
     public String getNama_turis() {
@@ -64,4 +77,7 @@ public class Turis extends Pengguna {
                 "password = '" + password + "';";
         return db.getData(sql);
     }
+    
+
+
 }

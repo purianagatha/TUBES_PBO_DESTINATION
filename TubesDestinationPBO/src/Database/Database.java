@@ -24,7 +24,7 @@ public class Database {
     static Statement stmt;
     static ResultSet rs;
 
-    public Database() throws SQLException {
+    public Database() {
         try {
             conn = DriverManager.getConnection(url, user, pass);
             stmt = conn.createStatement();
@@ -49,4 +49,5 @@ public class Database {
             JOptionPane.showMessageDialog(null, "Error :" + e.getMessage(), "Communication Error", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
 }

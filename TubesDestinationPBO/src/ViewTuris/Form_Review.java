@@ -28,7 +28,7 @@ public class Form_Review extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listNama = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -38,7 +38,7 @@ public class Form_Review extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(227, 242, 253));
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listNama);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Nama");
@@ -114,11 +114,11 @@ public class Form_Review extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JList<String> listNama;
     // End of variables declaration//GEN-END:variables
 }

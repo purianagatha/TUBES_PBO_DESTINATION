@@ -27,6 +27,10 @@ public abstract class Pengguna {
         this.email_pengguna = email_pengguna;
         this.password_pengguna = password_pengguna;
     }
+    
+    public Pengguna() {
+        
+    }
    
     public String getUsername_pengguna() {
         return username_pengguna;

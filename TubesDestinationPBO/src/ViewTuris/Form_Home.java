@@ -4,17 +4,29 @@
  */
 package ViewTuris;
 
+import Database.Database;
+import Model.TempatWisata;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author puris
  */
 public class Form_Home extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Form_Home
-     */
+    private ArrayList<TempatWisata> destinasi;
+    private DefaultListModel tabelDestinasi;
+    
     public Form_Home() {
         initComponents();
+        destinasi = new ArrayList();
+        tabelDestinasi = new DefaultListModel();
+        ShowTabel();
     }
 
     /**
@@ -28,20 +40,27 @@ public class Form_Home extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listDestinasi = new javax.swing.JList<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        textNama = new javax.swing.JLabel();
+        textDeskripsi = new javax.swing.JLabel();
+        textLokasi = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        textHarga = new javax.swing.JLabel();
+        textCari = new javax.swing.JTextField();
+        SearchButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(227, 242, 253));
 
-        jScrollPane1.setViewportView(jList1);
+        listDestinasi.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listDestinasiValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listDestinasi);
 
         jLabel20.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel20.setText("Detail Destination");
@@ -55,24 +74,38 @@ public class Form_Home extends javax.swing.JPanel {
         jLabel23.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel23.setText("Lokasi                                      :");
 
-        jLabel24.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel24.setText(" ");
-        jLabel24.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        textNama.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        textNama.setText(" ");
+        textNama.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel25.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel25.setText(" ");
-        jLabel25.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        textDeskripsi.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        textDeskripsi.setText(" ");
+        textDeskripsi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
-        jLabel26.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel26.setText(" ");
-        jLabel26.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        textLokasi.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        textLokasi.setText(" ");
+        textLokasi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
 
         jLabel27.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel27.setText("Harga :");
 
-        jLabel28.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel28.setText(" ");
-        jLabel28.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        textHarga.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        textHarga.setText(" ");
+        textHarga.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+
+        textCari.setText("jTextField1");
+        textCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCariActionPerformed(evt);
+            }
+        });
+
+        SearchButton.setText("Search");
+        SearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,51 +118,60 @@ public class Form_Home extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(textNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(textDeskripsi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(textLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel27)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
-                                .addGap(245, 245, 245)))))
+                                .addGap(245, 245, 245))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(textCari, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SearchButton)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SearchButton))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel20)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jLabel24))
+                    .addComponent(textNama))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jLabel26))
+                    .addComponent(textLokasi))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
-                    .addComponent(jLabel28))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(textHarga))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -144,19 +186,78 @@ public class Form_Home extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listDestinasiValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listDestinasiValueChanged
+        int idx = listDestinasi.getSelectedIndex();
+        if (idx >= 0) {
+            textNama.setText(destinasi.get(idx).getNamaDestinasi());
+            textDeskripsi.setText(destinasi.get(idx).getDeskripsiDestinasi());
+            textLokasi.setText(destinasi.get(idx).getLokasiDestinasi());
+            textHarga.setText(Integer.toString(destinasi.get(idx).getHargaDestinasi()));
+        } else {
+            textNama.setText("");
+            textDeskripsi.setText("");
+            textLokasi.setText("");
+            textHarga.setText("");
+        }
+    }//GEN-LAST:event_listDestinasiValueChanged
+
+    private void textCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCariActionPerformed
+      
+    }//GEN-LAST:event_textCariActionPerformed
+
+    private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
+       
+        SearchTempat(textCari.getText());
+    }//GEN-LAST:event_SearchButtonActionPerformed
+
+    public void ShowTabel() {
+        try {
+            Database db = new Database();
+            String sql = "select * from tempat_Wisata";
+            ResultSet rs = db.getData(sql);
+            while (rs.next()) {
+                TempatWisata tw = new TempatWisata(rs.getString("nama_destinasi"), rs.getString("deskripsi_destinasi"), rs.getString("lokasi_destinasi"), rs.getInt("harga_destinasi"));
+                destinasi.add(tw);
+                tabelDestinasi.addElement(tw.getNamaDestinasi());
+            }
+            listDestinasi.setModel(tabelDestinasi);
+        } catch (SQLException ex) {
+            Logger.getLogger(Form_Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void SearchTempat(String tempat) {
+       destinasi.clear();
+       tabelDestinasi.clear();
+        try {
+            Database db = new Database();
+            String sql = "select * from tempat_Wisata where nama_destinasi = '" + tempat + "'" ;
+            ResultSet rs = db.getData(sql);
+            while (rs.next()) {
+                TempatWisata tw = new TempatWisata(rs.getString("nama_destinasi"), rs.getString("deskripsi_destinasi"), rs.getString("lokasi_destinasi"), rs.getInt("harga_destinasi"));
+                destinasi.add(tw);
+                tabelDestinasi.addElement(tw.getNamaDestinasi());
+            }
+            listDestinasi.setModel(tabelDestinasi);
+        } catch (SQLException ex) {
+            Logger.getLogger(Form_Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SearchButton;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listDestinasi;
+    private javax.swing.JTextField textCari;
+    private javax.swing.JLabel textDeskripsi;
+    private javax.swing.JLabel textHarga;
+    private javax.swing.JLabel textLokasi;
+    private javax.swing.JLabel textNama;
     // End of variables declaration//GEN-END:variables
+
 }
