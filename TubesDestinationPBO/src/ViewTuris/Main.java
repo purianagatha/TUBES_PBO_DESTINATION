@@ -15,10 +15,12 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(new Form_Home());
                 } else if (index == 1) {
-                    setForm(new Form_HistoryBooking());
+                    setForm(new Form_Review());
                 } else if (index == 2) {
-                    setForm(new Form_Profile());
+                    setForm(new Form_Booking());
                 } else if (index == 3) {
+                    setForm(new Form_Profile());
+                }else if (index == 4) {
                     setForm(new Form_LogOut());
                 }
             }
@@ -39,6 +41,7 @@ public class Main extends javax.swing.JFrame {
         panelBorder1 = new ViewTuris.PanelBorder();
         menu1 = new ViewTuris.Menu();
         jMainPanel = new javax.swing.JPanel();
+        header1 = new ViewTuris.Header();
         form_Home1 = new ViewTuris.Form_Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,6 +51,7 @@ public class Main extends javax.swing.JFrame {
 
         jMainPanel.setOpaque(false);
         jMainPanel.setLayout(new java.awt.BorderLayout());
+        jMainPanel.add(header1, java.awt.BorderLayout.PAGE_START);
         jMainPanel.add(form_Home1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
@@ -117,6 +121,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ViewTuris.Form_Home form_Home1;
+    private ViewTuris.Header header1;
     private javax.swing.JPanel jMainPanel;
     private ViewTuris.Menu menu1;
     private ViewTuris.PanelBorder panelBorder1;
